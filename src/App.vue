@@ -19,14 +19,57 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SearchBar from '@/components/SearchBar.vue'
 import WeatherInfo from '@/components/WeatherInfo.vue'
+
+const API_KEY = 'c5c58670c32db956ece142ae13d1759f'
 
 export default {
   name: 'app',
   components: {
     SearchBar,
     WeatherInfo
+  },
+  data() {
+    return {
+      city: undefined,
+      country: undefined,
+      temp: undefined,
+      desc: undefined,
+      pressure: undefined,
+      error: undefined
+    }
+  },
+  methods: {
+    fetchWeather() {
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=${city},${country}&units=metric`
+        )
+        .then(data => {
+          if(data.cod === "404") {
+            this.city = undefined,
+            this.country = undefined,
+            this.temp = undefined,
+            this.desc = undefined,
+            this.pressure = undefined,
+            this.error = "City not found"
+          } else {
+            this.city = data.name,
+            this.country = data.sys.country,
+            this.temp = data.main.temp,
+            this.desc = data.weather[0].description,
+            this.pressure = data.main.pressure,
+            this.error = undefined
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
+        document.getElementById("myForm").reset();
+    }
   }
 }
 </script>
