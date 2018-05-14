@@ -1,12 +1,12 @@
 <template>
   <div class="searchbar">   
-      <form id="myForm">
+      <form @submit.prevent="fetchWeather" id="myForm">
         <div class="input-wrapper">
           <span class="icon">
             <i class="far fa-building" />
           </span>
           <input
-            class="field "
+            class="field"
             name="city"
             type="text"
             placeholder="City"
@@ -17,7 +17,7 @@
             <i class="fas fa-globe" />
           </span>
           <input
-            class="field "
+            class="field"
             name="country"
             type="text"
             placeholder="Country"
@@ -35,7 +35,14 @@
 
 <script>
 export default {
-  name: 'SearchBar'
+  name: 'SearchBar',
+  props: [ 'fetchWeather'],
+  data(){
+    return {
+      city: null,
+      country: null
+    }
+  }
 }
 </script>
 

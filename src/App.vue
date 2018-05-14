@@ -12,7 +12,7 @@
           3. Click "Get weather"
         </p>
     </div>
-    <SearchBar />
+    <SearchBar :fetchWeather="fetchWeather" />
     </div>
     <WeatherInfo />
   </div>
@@ -68,7 +68,7 @@ export default {
           console.log(err)
         })
 
-        document.getElementById("myForm").reset();
+        document.getElementById("myForm").reset();      
     }
   }
 }
