@@ -2,30 +2,35 @@
   <div class="weather-info">
         <p class="weather-par animated slideInRight">
           <span class="icon">
-            <i class="far fa-building" />
+            <i class="far fa-building" /> 
           </span>
+          {{ weatherData.city }}
         </p>
-        <p class="weather-par animated slideInRight">
+        <p class="weather-par animated slideInRight"> 
           <span class="icon">
-            <i class="fas fa-globe" />
+            <i class="fas fa-globe" /> 
           </span>
+          {{ weatherData.country }}
         </p>
         <p class="weather-par animated slideInRight">
           <span class="icon">
             <i class="fas fa-thermometer-half" />
           </span>
+          {{ weatherData.temp }}
         </p>
         <p class="weather-par animated slideInRight">
           <span class="icon">
             <i class="fas fa-comment" />
           </span>
+          {{ weatherData.desc }}
         </p>
         <p class="weather-par animated slideInRight">
           <span class="icon">
             <i class="fas fa-tachometer-alt" />
           </span>
+          {{ weatherData.pressure }}
         </p>
-        <h2 class="weather-error animated slideInRight">
+        <h2 v-if="weatherData.error" class="weather-error animated slideInRight">
           <span class="icon">
             <i class="fas fa-exclamation-triangle" />
           </span>
@@ -36,6 +41,7 @@
 <script>
 export default {
   name: 'WeatherInfo',
+  props: ['weatherData'],
   data() {
     return {}
   }

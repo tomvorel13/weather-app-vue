@@ -14,7 +14,9 @@
     </div>
     <SearchBar :fetchWeather="fetchWeather" />
     </div>
-    <WeatherInfo />
+    <WeatherInfo
+      :weatherData="this.weatherData"
+    />
   </div>
 </template>
 
@@ -33,42 +35,40 @@ export default {
   },
   data() {
     return {
-      city: undefined,
-      country: undefined,
-      temp: undefined,
-      desc: undefined,
-      pressure: undefined,
-      error: undefined
+      weatherData: {
+        city: null,
+        country: null,
+        temp: null,
+        desc: null,
+        pressure: null,
+        error: null
+      }
     }
   },
   methods: {
     fetchWeather() {
       axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=${city},${country}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=London,uk&units=metric`
         )
-        .then(data => {
-          if(data.cod === "404") {
-            this.city = undefined,
-            this.country = undefined,
-            this.temp = undefined,
-            this.desc = undefined,
-            this.pressure = undefined,
-            this.error = "City not found"
+        .then(res => {
+          let data = res.data
+          if (data.cod === '404') {
+            this.weatherData.error = 'ERROR!'
           } else {
-            this.city = data.name,
-            this.country = data.sys.country,
-            this.temp = data.main.temp,
-            this.desc = data.weather[0].description,
-            this.pressure = data.main.pressure,
-            this.error = undefined
+            this.weatherData.city = data.name
+            this.weatherData.country = data.sys.country
+            this.weatherData.temp = data.main.temp
+            this.weatherData.desc = data.weather[0].description
+            this.weatherData.pressure = data.main.pressure
+            this.weatherData.error = null
           }
         })
         .catch(err => {
           console.log(err)
         })
 
-        document.getElementById("myForm").reset();      
+      document.getElementById('myForm').reset()
     }
   }
 }

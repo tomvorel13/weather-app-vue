@@ -39,8 +39,7 @@ export default {
   props: [ 'fetchWeather'],
   data(){
     return {
-      city: null,
-      country: null
+      
     }
   }
 }
