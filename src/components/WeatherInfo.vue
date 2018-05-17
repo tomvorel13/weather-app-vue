@@ -1,5 +1,6 @@
 <template>
   <div class="weather-info">
+    <div v-if="weatherData.city">
         <p class="weather-par animated slideInRight">
           <span class="icon">
             <i class="far fa-building" /> 
@@ -30,21 +31,21 @@
           </span>
           {{ weatherData.pressure }}
         </p>
-        <h2 v-if="weatherData.error" class="weather-error animated slideInRight">
-          <span class="icon">
-            <i class="fas fa-exclamation-triangle" />
-          </span>
-        </h2>
+     </div>   
+     <h2 v-if="weatherData.error" class="weather-error animated slideInRight">
+        <span class="icon">
+          <i class="fas fa-exclamation-triangle" /> 
+        </span>
+        I was not able to find that city :-(
+      </h2>
   </div>
+  
 </template>
 
 <script>
 export default {
   name: 'WeatherInfo',
-  props: ['weatherData'],
-  data() {
-    return {}
-  }
+  props: ['weatherData']
 }
 </script>
 

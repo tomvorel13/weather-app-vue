@@ -7,8 +7,8 @@
           </span>
           <input
             class="field"
-            name="city"
             type="text"
+            v-model="userInput.city"
             placeholder="City"
           />
         </div>
@@ -18,8 +18,8 @@
           </span>
           <input
             class="field"
-            name="country"
             type="text"
+            v-model="userInput.country"
             placeholder="Country"
           />
         </div>
@@ -27,7 +27,7 @@
         <br />
         <button class="btn btn-effect">Get weather</button>
       </form>
-      <button class="btn btn-effect">
+      <button @click="clearData" class="btn btn-effect">
         Clear
       </button>
   </div>
@@ -36,12 +36,7 @@
 <script>
 export default {
   name: 'SearchBar',
-  props: [ 'fetchWeather'],
-  data(){
-    return {
-      
-    }
-  }
+  props: ['fetchWeather', 'clearData', 'userInput']
 }
 </script>
 

@@ -12,7 +12,11 @@
           3. Click "Get weather"
         </p>
     </div>
-    <SearchBar :fetchWeather="fetchWeather" />
+    <SearchBar 
+      :fetchWeather="fetchWeather"
+      :clearData="clearData"
+      :userInput="this.userInput"
+    />
     </div>
     <WeatherInfo
       :weatherData="this.weatherData"
@@ -42,31 +46,50 @@ export default {
         desc: null,
         pressure: null,
         error: null
+      },
+      userInput: {
+        city: null,
+        country: null
       }
     }
   },
   methods: {
     fetchWeather() {
+      let city = this.userInput.city
+      let country = this.userInput.country
       axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=London,uk&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=${city},${country}&units=metric`
         )
         .then(res => {
           let data = res.data
-          if (data.cod === '404') {
-            this.weatherData.error = 'ERROR!'
-          } else {
-            this.weatherData.city = data.name
-            this.weatherData.country = data.sys.country
-            this.weatherData.temp = data.main.temp
-            this.weatherData.desc = data.weather[0].description
-            this.weatherData.pressure = data.main.pressure
-            this.weatherData.error = null
-          }
+          this.weatherData.city = data.name
+          this.weatherData.country = data.sys.country
+          this.weatherData.temp = data.main.temp
+          this.weatherData.desc = data.weather[0].description
+          this.weatherData.pressure = data.main.pressure
+          this.weatherData.error = null
         })
         .catch(err => {
-          console.log(err)
+          this.weatherData.city = null
+          this.weatherData.country = null
+          this.weatherData.temp = null
+          this.weatherData.desc = null
+          this.weatherData.pressure = null
+          this.weatherData.error = err.message
         })
+
+      this.userInput.city = null
+      this.userInput.country = null
+    },
+
+    clearData() {
+      this.weatherData.city = null
+      this.weatherData.country = null
+      this.weatherData.temp = null
+      this.weatherData.desc = null
+      this.weatherData.pressure = null
+      this.weatherData.error = null
 
       document.getElementById('myForm').reset()
     }
