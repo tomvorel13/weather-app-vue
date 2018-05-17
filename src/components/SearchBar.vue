@@ -41,7 +41,15 @@ export default {
 </script>
 
 <style>
-.btn {
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  padding: 1em 3em;
+}
+
+.searchbar .btn {
   display: inline-block;
   border: 2px solid #4fc08d;
   background-color: white;
@@ -55,27 +63,22 @@ export default {
   overflow: hidden;
 }
 
-.icon {
+.searchbar .icon {
   color: #4fc08d;
+  width: 30px;
+  display: inline-block;
+  margin-bottom: 7px;
 }
 
-.btn:hover {
+.searchbar .btn:hover {
   cursor: pointer;
 }
 
-.btn:focus {
+.searchbar .btn:focus {
   outline: none;
 }
 
-.searchbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 300px;
-  padding: 1em 3em;
-}
-
-.field {
+.searchbar .field {
   outline: none;
   font-size: 1.2em;
   padding: 5px 10px;
@@ -88,30 +91,30 @@ export default {
   border-bottom: 2px solid transparent;
 }
 
-.field:focus {
+.searchbar .field:focus {
   border-bottom: 2px solid #4fc08d;
 }
 
-::placeholder {
+.searchbar ::placeholder {
   color: #4fc08d;
   opacity: 1;
 }
 
-input:focus::-webkit-input-placeholder {
+.searchbar input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-input:focus:-moz-placeholder {
+.searchbar input:focus:-moz-placeholder {
   color: transparent;
 } /* FF 4-18 */
-input:focus::-moz-placeholder {
+.searchbar input:focus::-moz-placeholder {
   color: transparent;
 } /* FF 19+ */
-input:focus:-ms-input-placeholder {
+.searchbar input:focus:-ms-input-placeholder {
   color: transparent;
 } /* IE 10+ */
 
 /* Hover buttons */
-.btn-effect {
+.searchbar .btn-effect {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -124,7 +127,7 @@ input:focus:-ms-input-placeholder {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-.btn-effect:before {
+.searchbar .btn-effect:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -144,29 +147,24 @@ input:focus:-ms-input-placeholder {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-.btn-effect:hover,
-.btn-effect:focus,
-.btn-effect:active {
+.searchbar .btn-effect:hover,
+.searchbar .btn-effect:focus,
+.searchbar .btn-effect:active {
   color: white;
 }
-.btn-effect:hover:before,
-.btn-effect:focus:before,
-.btn-effect:active:before {
+.searchbar .btn-effect:hover:before,
+.searchbar .btn-effect:focus:before,
+.searchbar .btn-effect:active:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
 
 /* Removing the dotted line in firefox */
-button::-moz-focus-inner {
+.searchbar button::-moz-focus-inner {
   border: 0;
 }
 
-.icon {
-  display: inline-block;
-  margin-bottom: 7px;
-}
-
-.input-wrapper {
+.searchbar .input-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -176,7 +174,7 @@ button::-moz-focus-inner {
 /* MEDIA QUERIES  */
 
 @media screen and (max-width: 830px) {
-  .form-wrapper {
+  .searchbar .form-wrapper {
     margin: 0 auto;
   }
 }

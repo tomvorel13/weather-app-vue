@@ -107,12 +107,12 @@ export default {
   box-shadow: 6px 4px 20px 0px rgba(189, 189, 189, 1);
 }
 
-.flex-container {
+#app .flex-container {
   display: flex;
   justify-content: space-between;
 }
 
-.heading-wrapper {
+#app .heading-wrapper {
   -webkit-clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
   background-color: #4fc08d;
@@ -121,18 +121,18 @@ export default {
   color: white;
 }
 
-h1 {
+#app h1 {
   font-size: 3em;
   font-weight: 300;
   margin-top: 0;
 }
 
-.lead-sentence {
+#app .lead-sentence {
   font-weight: 300;
   font-size: 1.2em;
 }
 
-.instructions {
+#app .instructions {
   font-style: italic;
   font-weight: 300;
 }
@@ -140,28 +140,29 @@ h1 {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 830px) {
-  .wrapper {
+  #app .wrapper {
     margin-top: 0;
   }
 
-  .flex-container {
+  #app .flex-container {
     flex-direction: column;
+    align-items: center;
   }
 
-  .heading-wrapper {
+  #app .heading-wrapper {
     -webkit-clip-path: none;
     clip-path: none;
     width: 90%;
     padding: 2em 1em;
   }
 
-  h1 {
+  #app h1 {
     font-size: 2em;
     text-align: center;
   }
 
-  .lead-sentence,
-  .instructions {
+  #app .lead-sentence,
+  #app .instructions {
     text-align: center;
   }
 }
